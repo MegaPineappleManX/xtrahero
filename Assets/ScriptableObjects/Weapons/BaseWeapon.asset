@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42da60f3c8c39fd4d87984526818be03, type: 3}
+  m_Name: BaseWeapon
+  m_EditorClassIdentifier: Assembly-CSharp::Weapon
+  MaxActiveShots: 3
+  ShotSpeeds: 0f0000000f0000000f000000
+  DamageAmounts: 010000000300000005000000
+  ChargeIntervals:
+  - 0
+  - 0.25
+  - 3
+  Prefabs:
+  - {fileID: 9200220902611908020, guid: 8ee5236f9390e72449c057fa74ece51f, type: 3}
+  - {fileID: 2932887461531099682, guid: 58badda2730b5da4394749e43fd045ac, type: 3}
+  - {fileID: 1187180315068625537, guid: 3290a6e6e2a938a43bf92db007cb5be8, type: 3}
+  WeaponType: 0
