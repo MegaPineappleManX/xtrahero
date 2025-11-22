@@ -1,4 +1,4 @@
-
+﻿
 using UnityEngine;
 
 public class PlayerBaseWeaponChargingState : PlayerCombatState
@@ -20,7 +20,7 @@ public class PlayerBaseWeaponChargingState : PlayerCombatState
     protected override void OnShootEnd(Command command)
     {
         base.OnShootEnd(command);
-        var weapon = _player.Weapon;
+	    var weapon = _player.ActiveWeapon;
         int chargeLevel = 0;
 
         GameObject prefabToSpawn = weapon.Prefabs[0];
@@ -35,7 +35,7 @@ public class PlayerBaseWeaponChargingState : PlayerCombatState
         }
 
         var shot = GameObject.Instantiate(prefabToSpawn, _player.transform.position, Quaternion.identity);
-        shot.GetComponent<ChargableWeaponShot>().Init(_player.Weapon, _player.transform.position, _player.ShootingRight ? Vector3.right : Vector3.left, null, null, chargeLevel);
+        shot.GetComponent<ChargableWeaponShot>().Init(_player.ActiveWeapon, _player.transform.position, _player.ShootingRight ? Vector3.right : Vector3.left, null, null, chargeLevel);
 
         if (chargeLevel > 0)
         {

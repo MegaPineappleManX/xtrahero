@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum PlayerCombatStateType
 {
@@ -36,7 +36,13 @@ public abstract class PlayerCombatState : EntityState
                 break;
             case CommandType.ShootEnd:
                 OnShootEnd(command);
-                break;
+	            break;
+            case CommandType.WeaponChangeLeft:
+            	OnWeaponChangeLeft(command);
+            	break;
+            case CommandType.WeaponChangeRight:
+            	OnWeaponChangeRight(command);
+            	break;
             default:
                 OnInvalid(command);
                 break;
@@ -44,7 +50,17 @@ public abstract class PlayerCombatState : EntityState
     }
     
     protected virtual void OnShootStart(Command command) { }
-    protected virtual void OnShootEnd(Command command) { }
+	protected virtual void OnShootEnd(Command command) { }
+	
+	protected virtual void OnWeaponChangeLeft(Command command) 
+	{ 
+		_player.ChangeWeapon(false);
+	}
+	
+	protected virtual void OnWeaponChangeRight(Command command) 
+	{
+		_player.ChangeWeapon(true);
+	}
 
     protected virtual void OnInvalid(Command command)
     {

@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using NUnit.Framework.Constraints;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour, IDamageable
+public class Player : Entity, IDamageable
 {
     public LayerMask GroundLayerMask;
     public List<Weapon> Weapons = new List<Weapon>();
@@ -23,7 +23,8 @@ public class Player : MonoBehaviour, IDamageable
     private PlayerControllerCommandSystem _commandSystem;
     private PlayerMovementState _movementState;
     private PlayerCombatState _combatState;
-    private Weapon _activeWeapon;
+	private int _activeWeaponIndex = 0;
+	
     public bool FacingRight
     {
         get
@@ -39,6 +40,8 @@ public class Player : MonoBehaviour, IDamageable
             return _movementState.Type == PlayerMovementStateType.WallSliding ? !_facingRight : _facingRight;
         }
     }
+    
+	public Weapon ActiveWeapon => Weapons[_activeWeaponIndex];
 
     private bool _facingRight = true;
     public float DashSpeed { get; } = 15f;
@@ -46,14 +49,12 @@ public class Player : MonoBehaviour, IDamageable
     public float JumpForce { get; } = 25f;
     public float DashTime { get; } = 1f;
     public float MaxWallSlideGravity { get; } = 10;
-    public Weapon Weapon => _activeWeapon;
 
     void Start()
     {
         _commandSystem = new PlayerControllerCommandSystem();
         SetMovementState(new PlayerIdleState(_commandSystem, this));
-        _activeWeapon = Weapons[0];
-        SetCombatState(_activeWeapon.GetInitialCombatState(_commandSystem, this));
+        SetCombatState(Weapons[_activeWeaponIndex].GetInitialCombatState(_commandSystem, this));
     }
 
     void Update()
@@ -120,7 +121,19 @@ public class Player : MonoBehaviour, IDamageable
         _facingRight = rightFacing;
         // TODO: Flip sprite/model
     }
-
+    
+	public void ChangeWeapon(bool right) 
+	{
+		if (right) 
+		{
+			_activeWeaponIndex = _activeWeaponIndex == Weapons.Count - 1 ? 0 : _activeWeaponIndex + 1;
+		}
+		else 
+		{
+			_activeWeaponIndex = _activeWeaponIndex == 0 ? Weapons.Count - 1 : _activeWeaponIndex - 1;
+		}
+		
+	}
 
     // IDamagable
 

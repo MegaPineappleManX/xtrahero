@@ -1,4 +1,4 @@
-using UnityEngine.InputSystem;
+﻿using UnityEngine.InputSystem;
 
 public class CommandSystem
 {
@@ -54,6 +54,16 @@ public class PlayerControllerCommandSystem : CommandSystem
             if (keyboard.leftShiftKey.wasReleasedThisFrame) { TriggerCommand(new DashReleasedCommand()); }
             if (keyboard.eKey.wasPressedThisFrame) { TriggerCommand(new ShootStartCommand()); }
             if (keyboard.eKey.wasReleasedThisFrame) { TriggerCommand(new ShootEndCommand()); }
+	        if (keyboard.zKey.wasReleasedThisFrame) { TriggerCommand(new WeaponChangeLeftCommand()); }
+	        if (keyboard.cKey.wasReleasedThisFrame) { TriggerCommand(new WeaponChangeRightCommand()); }
+	        if (keyboard.digit1Key.wasReleasedThisFrame) { TriggerCommand(new WeaponChange01Command()); }
+	        if (keyboard.digit2Key.wasReleasedThisFrame) { TriggerCommand(new WeaponChange02Command()); }
+	        if (keyboard.digit3Key.wasReleasedThisFrame) { TriggerCommand(new WeaponChange03Command()); }
+	        if (keyboard.digit4Key.wasReleasedThisFrame) { TriggerCommand(new WeaponChange04Command()); }
+	        if (keyboard.digit5Key.wasReleasedThisFrame) { TriggerCommand(new WeaponChange05Command()); }
+	        if (keyboard.digit6Key.wasReleasedThisFrame) { TriggerCommand(new WeaponChange06Command()); }
+	        if (keyboard.digit7Key.wasReleasedThisFrame) { TriggerCommand(new WeaponChange07Command()); }
+	        if (keyboard.digit8Key.wasReleasedThisFrame) { TriggerCommand(new WeaponChange08Command()); }
         }
 
         if (gamepad != null)
@@ -76,7 +86,22 @@ public class PlayerControllerCommandSystem : CommandSystem
             if (gamepad.rightStickButton.wasPressedThisFrame) { }
             if (gamepad.leftTrigger.wasPressedThisFrame) { }
             if (gamepad.leftShoulder.wasPressedThisFrame) { }
-            if (gamepad.leftStickButton.wasPressedThisFrame) { }
+	        if (gamepad.leftStickButton.wasPressedThisFrame) { }
+	        if (gamepad.leftShoulder.wasPressedThisFrame) { TriggerCommand(new WeaponChangeLeftCommand()); }
+	        if (gamepad.rightShoulder.wasPressedThisFrame) { TriggerCommand(new WeaponChangeRightCommand()); }
+	        
+	        UnityEngine.Debug.Log("LeftStick Values x: " + gamepad.leftStick.x + " y: " + gamepad.leftStick.y);
+	        
+	        /*
+	        if (gamepad.leftStick.x) { TriggerCommand(new WeaponChange01Command()); }
+	        if (keyboard.digit2Key.wasReleasedThisFrame) { TriggerCommand(new WeaponChange02Command()); }
+	        if (keyboard.digit3Key.wasReleasedThisFrame) { TriggerCommand(new WeaponChange03Command()); }
+	        if (keyboard.digit4Key.wasReleasedThisFrame) { TriggerCommand(new WeaponChange04Command()); }
+	        if (keyboard.digit5Key.wasReleasedThisFrame) { TriggerCommand(new WeaponChange05Command()); }
+	        if (keyboard.digit6Key.wasReleasedThisFrame) { TriggerCommand(new WeaponChange06Command()); }
+	        if (keyboard.digit7Key.wasReleasedThisFrame) { TriggerCommand(new WeaponChange07Command()); }
+	        if (keyboard.digit8Key.wasReleasedThisFrame) { TriggerCommand(new WeaponChange08Command()); }
+	        */
         }
     }
 }

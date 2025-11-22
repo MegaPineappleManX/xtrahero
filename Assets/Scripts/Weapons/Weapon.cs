@@ -1,9 +1,10 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public enum WeaponType
 {
-    BaseWeapon,
+	BaseWeapon,
+	MeleeWeapon,
     Invalid
 }
 
@@ -15,11 +16,13 @@ public class Weapon : ScriptableObject
     public List<int> DamageAmounts;
     public List<float> ChargeIntervals;
     public List<GameObject> Prefabs;
-    public WeaponType WeaponType;
+	public WeaponType WeaponType;
+    
     public PlayerCombatState GetInitialCombatState(CommandSystem commandSystem, Player player) {
         return WeaponType switch
         {
-            WeaponType.BaseWeapon => new PlayerBaseWeaponIdleState(commandSystem, player),
+	        WeaponType.BaseWeapon => new PlayerBaseWeaponIdleState(commandSystem, player),
+	        //WeaponType.MeleeWeapon => 
             _ => throw new System.NotImplementedException(),
         };
     }
