@@ -1,4 +1,4 @@
-using UnityEditor.ShaderGraph;
+﻿using UnityEditor.ShaderGraph;
 using UnityEngine;
 
 public enum PlayerMovementStateType
@@ -31,6 +31,13 @@ public enum CurrentSpeedType
     Rooted,
 }
 
+public enum CurrentPlatformType
+{
+	Normal,
+	Moving,
+	Ice,
+}
+
 public abstract class PlayerMovementState : EntityState
 {
     protected Player _player;
@@ -40,7 +47,8 @@ public abstract class PlayerMovementState : EntityState
     protected bool _dashPressed;
 
     public virtual PlayerMovementStateType Type { get; } = PlayerMovementStateType.Invalid;
-    public virtual CurrentSpeedType SpeedType { get; } = CurrentSpeedType.Normal;
+	public virtual CurrentSpeedType SpeedType { get; } = CurrentSpeedType.Normal;
+	public virtual CurrentPlatformType PlatformType { get; } = CurrentPlatformType.Normal;
 
     public PlayerMovementState(CommandSystem commandSystem, Player player) : base(commandSystem)
     {

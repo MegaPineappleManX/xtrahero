@@ -22,7 +22,7 @@ public class Weapon : ScriptableObject
         return WeaponType switch
         {
 	        WeaponType.BaseWeapon => new PlayerBaseWeaponIdleState(commandSystem, player),
-	        //WeaponType.MeleeWeapon => 
+	        WeaponType.MeleeWeapon => new PlayerMeleeWeaponIdleState(commandSystem, player),
             _ => throw new System.NotImplementedException(),
         };
     }

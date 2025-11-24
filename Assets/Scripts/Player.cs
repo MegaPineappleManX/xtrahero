@@ -133,6 +133,7 @@ public class Player : Entity, IDamageable
 			_activeWeaponIndex = _activeWeaponIndex == 0 ? Weapons.Count - 1 : _activeWeaponIndex - 1;
 		}
 		
+		SetCombatState(Weapons[_activeWeaponIndex].GetInitialCombatState(_commandSystem, this));
 	}
 
     // IDamagable

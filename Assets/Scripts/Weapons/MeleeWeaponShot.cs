@@ -4,18 +4,21 @@ using UnityEngine;
 public class MeleeWeaponShot : WeaponShot
 {
 	private int _chargeLevel;
-	
 	private float _timeActive = 0.25f;
+	private Transform _playerTransform;
 
-	public void Init(Weapon weaponData, Vector3 origin, Vector3 direction, List<GameObject> targetObjects = null, List<Vector3> targetPostions = null, int chargeLevel = 0)
+	public void Init(Weapon weaponData, Transform playerTransform, Vector3 direction)
 	{
-		base.Init(weaponData, origin, direction, targetObjects, targetPostions);
-		_chargeLevel = chargeLevel;
+		base.Init(weaponData, playerTransform.position, direction, null, null);
+		_chargeLevel = 0;
+		_playerTransform = playerTransform;
+		transform.localRotation = direction.x == 1 ? transform.localRotation : Quaternion.Euler(0, 180, 0);
 	}
 
 	private void Update()
 	{
 		_timeActive -= Time.deltaTime;
+		transform.position = _playerTransform.position;
 		
 		if (_timeActive <= 0) 
 		{
@@ -36,13 +39,18 @@ public class MeleeWeaponShot : WeaponShot
 			_triggered = true;
 			if (damageComponent.Hit(_weaponData.DamageAmounts[_chargeLevel]))
 			{
-				OnHit();
+				OnHit(other);
 			}
 		}
+		
+		var reflectComponent = other.GetComponent<IReflectable>();
+		if (reflectComponent != null)
+        {
+            reflectComponent.Reflect(_playerTransform.position);
+        }
 	}
 
-	private void OnHit()
+	private void OnHit(Collider other)
 	{
-		//Destroy(gameObject);
 	}
 }
