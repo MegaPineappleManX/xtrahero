@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class Player : Entity, IDamageable
 {
     public LayerMask GroundLayerMask;
-    public List<Weapon> Weapons = new List<Weapon>();
+    public List<Equipable> Weapons = new List<Equipable>();
     // TODO: Move this logic to getting collider Size? 
     public float characterHeight = 2.0f;
     public float characterWidth = 1.0f;
@@ -41,7 +41,7 @@ public class Player : Entity, IDamageable
         }
     }
     
-	public Weapon ActiveWeapon => Weapons[_activeWeaponIndex];
+	public Equipable ActiveWeapon => Weapons[_activeWeaponIndex];
 
     private bool _facingRight = true;
     public float DashSpeed { get; } = 15f;
@@ -54,7 +54,7 @@ public class Player : Entity, IDamageable
     {
         _commandSystem = new PlayerControllerCommandSystem();
         SetMovementState(new PlayerIdleState(_commandSystem, this));
-        SetCombatState(Weapons[_activeWeaponIndex].GetInitialCombatState(_commandSystem, this));
+        SetCombatState(ActiveWeapon.GetPart<WeaponTypePart>().GetInitialCombatState(_commandSystem, this));
     }
 
     void Update()
@@ -132,8 +132,9 @@ public class Player : Entity, IDamageable
 		{
 			_activeWeaponIndex = _activeWeaponIndex == 0 ? Weapons.Count - 1 : _activeWeaponIndex - 1;
 		}
-		
-		SetCombatState(Weapons[_activeWeaponIndex].GetInitialCombatState(_commandSystem, this));
+
+        WeaponTypePart part = ActiveWeapon.GetPart<WeaponTypePart>();
+		SetCombatState(part.GetInitialCombatState(_commandSystem, this));
 	}
 
     // IDamagable

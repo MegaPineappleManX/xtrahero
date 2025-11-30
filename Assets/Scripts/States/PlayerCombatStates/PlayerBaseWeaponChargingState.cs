@@ -22,13 +22,14 @@ public class PlayerBaseWeaponChargingState : PlayerCombatState
 	    var weapon = _player.ActiveWeapon;
         int chargeLevel = 0;
 
-        GameObject prefabToSpawn = weapon.Prefabs[0];
+        GameObject prefabToSpawn = weapon.GetPart<ChargePart>().ChargeLevels[0].Prefab;
 
-        for (int i = 1; i < weapon.ChargeIntervals.Count; ++i)
+        for (int i = 1; i < weapon.GetPart<ChargePart>().ChargeLevels.Count; ++i)
         {
-            if (_timeInState >= weapon.ChargeIntervals[i])
+            var chargeLevelData = weapon.GetPart<ChargePart>().ChargeLevels[i];
+            if (_timeInState >= chargeLevelData.MinChargeTime)
             {
-                prefabToSpawn = weapon.Prefabs[i];
+                prefabToSpawn = chargeLevelData.Prefab;
                 chargeLevel = i;
             }
         }

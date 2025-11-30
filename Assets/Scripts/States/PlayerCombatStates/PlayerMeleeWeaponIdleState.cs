@@ -19,8 +19,8 @@ public class PlayerMeleeWeaponIdleState : PlayerCombatState
 	    base.OnShootStart(command);
         
 	    var weapon = _player.ActiveWeapon;
-	    
-	    GameObject prefabToSpawn = weapon.Prefabs[0];
+
+        GameObject prefabToSpawn = weapon.GetPart<PrefabPart>().Prefab;
 	    
 	    var shot = GameObject.Instantiate(prefabToSpawn, _player.transform.position, Quaternion.identity);
 	    shot.GetComponent<MeleeWeaponShot>().Init(_player.ActiveWeapon, _player.transform, _player.ShootingRight ? Vector3.right : Vector3.left);

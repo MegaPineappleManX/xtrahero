@@ -7,7 +7,7 @@ public class MeleeWeaponShot : WeaponShot
 	private float _timeActive = 0.25f;
 	private Transform _playerTransform;
 
-	public void Init(Weapon weaponData, Transform playerTransform, Vector3 direction)
+	public void Init(Equipable weaponData, Transform playerTransform, Vector3 direction)
 	{
 		base.Init(weaponData, playerTransform.position, direction, null, null);
 		_chargeLevel = 0;
@@ -37,7 +37,7 @@ public class MeleeWeaponShot : WeaponShot
 		if (damageComponent != null && damageComponent.GetDamagableObjectType() != DamagableObjectType.Player)
 		{
 			_triggered = true;
-			if (damageComponent.Hit(_weaponData.DamageAmounts[_chargeLevel]))
+			if (damageComponent.Hit(_weaponData.GetPart<DamageAmountPart>().DamageAmount))
 			{
 				OnHit(other);
 			}

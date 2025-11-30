@@ -4,16 +4,18 @@ using UnityEngine;
 public class ChargableWeaponShot : WeaponShot
 {
     private int _chargeLevel;
+    private ChargePart _chargePart;
 
-    public void Init(Weapon weaponData, Vector3 origin, Vector3 direction, List<GameObject> targetObjects = null, List<Vector3> targetPostions = null, int chargeLevel = 0)
+    public void Init(Equipable weaponData, Vector3 origin, Vector3 direction, List<GameObject> targetObjects = null, List<Vector3> targetPostions = null, int chargeLevel = 0)
     {
         base.Init(weaponData, origin, direction, targetObjects, targetPostions);
         _chargeLevel = chargeLevel;
+        _chargePart = weaponData.GetPart<ChargePart>();
     }
 
     private void Update()
     {
-        transform.position += _direction * _weaponData.ShotSpeeds[_chargeLevel] * Time.deltaTime;
+        transform.position += _direction * _weaponData.GetPart<ChargePart>().ChargeLevels[_chargeLevel].Speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,7 +29,7 @@ public class ChargableWeaponShot : WeaponShot
         if (damageComponent != null && damageComponent.GetDamagableObjectType() != DamagableObjectType.Player)
         {
             _triggered = true;
-            if (damageComponent.Hit(_weaponData.DamageAmounts[_chargeLevel]))
+            if (damageComponent.Hit((int)_chargePart.ChargeLevels[_chargeLevel].Damage))
             {
                 OnHit();
             }
