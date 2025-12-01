@@ -9,14 +9,64 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42da60f3c8c39fd4d87984526818be03, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ebe65bd874f0e54382d4b6832af5eef, type: 3}
   m_Name: MeleeWeapon
-  m_EditorClassIdentifier: Assembly-CSharp::Weapon
-  MaxActiveShots: 1
-  ShotSpeeds: 00000000
-  DamageAmounts: 05000000
-  ChargeIntervals:
-  - 0
-  Prefabs:
-  - {fileID: 5803973255485368402, guid: 249f51ae659744a48adacfce866067aa, type: 3}
-  WeaponType: 1
+  m_EditorClassIdentifier: Assembly-CSharp::Equipable
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 5803973255485368402, guid: 249f51ae659744a48adacfce866067aa, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: Parts
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[Part, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 1|WeaponTypePart, Assembly-CSharp
+    - Name: WeaponType
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|DamageTypePart, Assembly-CSharp
+    - Name: DamageType
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|PrefabPart, Assembly-CSharp
+    - Name: Prefab
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|ShotCountPart, Assembly-CSharp
+    - Name: MaxActiveShots
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 

@@ -37,7 +37,8 @@ public class MeleeWeaponShot : WeaponShot
 		if (damageComponent != null && damageComponent.GetDamagableObjectType() != DamagableObjectType.Player)
 		{
 			_triggered = true;
-			if (damageComponent.Hit(_weaponData.GetPart<DamageAmountPart>().DamageAmount))
+			var damagePart = _weaponData.GetPart<DamageAmountPart>();
+			if (damageComponent.Hit(damagePart == null ? 0 : damagePart.DamageAmount))
 			{
 				OnHit(other);
 			}

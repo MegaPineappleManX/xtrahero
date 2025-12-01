@@ -12,15 +12,15 @@ public class ReflectableRocket : MonoBehaviour, IReflectable
     // Update is called once per frame
     void Update()
 	{
-		_direction.y -= Time.deltaTime / 4;
+		_direction.y -= Time.deltaTime / 5;
     	
-	    transform.position += _direction * Time.deltaTime;
+	    transform.position += _direction * Time.deltaTime * 5;
     }
 
 	public void Reflect(Vector3 reflectorPosition)
     {
         var dir = transform.position - reflectorPosition;
-
+        dir.Normalize();
         Debug.Log(dir);
         
         _direction = dir;//new Vector3(_direction.x * dir.x, _direction.y * dir.y, _direction.z * dir.z);

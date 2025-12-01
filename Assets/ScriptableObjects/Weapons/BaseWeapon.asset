@@ -9,18 +9,130 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42da60f3c8c39fd4d87984526818be03, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ebe65bd874f0e54382d4b6832af5eef, type: 3}
   m_Name: BaseWeapon
-  m_EditorClassIdentifier: Assembly-CSharp::Weapon
-  MaxActiveShots: 3
-  ShotSpeeds: 0f0000000f0000000f000000
-  DamageAmounts: 010000000300000005000000
-  ChargeIntervals:
-  - 0
-  - 0.25
-  - 3
-  Prefabs:
-  - {fileID: 9200220902611908020, guid: 8ee5236f9390e72449c057fa74ece51f, type: 3}
-  - {fileID: 2932887461531099682, guid: 58badda2730b5da4394749e43fd045ac, type: 3}
-  - {fileID: 1187180315068625537, guid: 3290a6e6e2a938a43bf92db007cb5be8, type: 3}
-  WeaponType: 0
+  m_EditorClassIdentifier: Assembly-CSharp::Equipable
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 9200220902611908020, guid: 8ee5236f9390e72449c057fa74ece51f, type: 3}
+    - {fileID: 2932887461531099682, guid: 58badda2730b5da4394749e43fd045ac, type: 3}
+    - {fileID: 1187180315068625537, guid: 3290a6e6e2a938a43bf92db007cb5be8, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: Parts
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[Part, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 1|WeaponTypePart, Assembly-CSharp
+    - Name: WeaponType
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|DamageTypePart, Assembly-CSharp
+    - Name: DamageType
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|ShotCountPart, Assembly-CSharp
+    - Name: MaxActiveShots
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|ChargePart, Assembly-CSharp
+    - Name: ChargeLevels
+      Entry: 7
+      Data: 5|System.Collections.Generic.List`1[[ChargeLevel, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 6|ChargeLevel, Assembly-CSharp
+    - Name: Damage
+      Entry: 4
+      Data: 1
+    - Name: MinChargeTime
+      Entry: 4
+      Data: 0
+    - Name: Speed
+      Entry: 4
+      Data: 15
+    - Name: Prefab
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 7|ChargeLevel, Assembly-CSharp
+    - Name: Damage
+      Entry: 4
+      Data: 3
+    - Name: MinChargeTime
+      Entry: 4
+      Data: 0.25
+    - Name: Speed
+      Entry: 4
+      Data: 15
+    - Name: Prefab
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 8|ChargeLevel, Assembly-CSharp
+    - Name: Damage
+      Entry: 4
+      Data: 5
+    - Name: MinChargeTime
+      Entry: 4
+      Data: 3
+    - Name: Speed
+      Entry: 4
+      Data: 15
+    - Name: Prefab
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
