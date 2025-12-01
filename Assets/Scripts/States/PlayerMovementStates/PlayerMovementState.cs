@@ -119,7 +119,8 @@ public abstract class PlayerMovementState : EntityState
             hit = hitInfo;
 
             // If we're on a slope only return the middle point
-            if (Vector3.Angle(Vector3.up, hitInfo.normal) > 0 && hit.point.y + _player.ColliderHeight > _player.transform.position.y)
+            if (Vector3.Angle(Vector3.up, hitInfo.normal) > 0 &&                         // Floor normal angle is greater than 0
+                hit.point.y + _player.ColliderHeight / 2 > _player.transform.position.y) // hit point is higher than the player
             {
                 Debug.DrawRay(rayOrigin, Vector3.down, Color.green);
                 return hit;
@@ -130,25 +131,14 @@ public abstract class PlayerMovementState : EntityState
             }
         }
 
-        var leftPoint = Vector3.left * _player.ColliderWidth / 2;
-        var leftHits = Physics.RaycastAll(rayOrigin + leftPoint, Vector3.down, _player.ColliderHeight, _player.GroundLayerMask);
-    
-        foreach (var leftHit in leftHits)
-        {
-            if (hit.point != Vector3.down * int.MaxValue || Vector3.Angle(Vector3.up, leftHit.normal) == 0)
-            {
-                //Debug.DrawRay(rayOrigin + leftPoint, Vector3.down, Color.green);
-                //hit = hit.point.y > leftHit.point.y ? hit : leftHit;
-            }
-            else
-            {
-                //Debug.DrawRay(rayOrigin, Vector3.down, Color.red);
-            }
-        }
+        var leftPoint = Vector3.left * _player.ColliderWidth / 2 * 0.9f;
         if (Physics.Raycast(rayOrigin + leftPoint, Vector3.down, out hitInfo, _player.ColliderHeight, _player.GroundLayerMask))
         {
             // ignore slopes
-            if (Vector3.Angle(Vector3.up, hitInfo.normal) == 90 && Vector3.Angle(Vector3.up, hit.normal) == 0)
+            if (Vector3.Angle(Vector3.up, hitInfo.normal) == 0 &&                              // Floor normal angle is greater than 0
+                hitInfo.point.y + _player.ColliderHeight / 2 > _player.transform.position.y && // hit point is higher than the player
+                Vector3.Angle(Vector3.up, hit.normal) == 0 && 
+                hit.point.y + _player.ColliderHeight / 2 <= _player.transform.position.y)
             {
                 Debug.DrawRay(rayOrigin + leftPoint, Vector3.down, Color.green);
                 hit = hit.point.y > hitInfo.point.y ? hit : hitInfo;
@@ -159,11 +149,14 @@ public abstract class PlayerMovementState : EntityState
             }
         }
 
-        var rightPoint = Vector3.right * _player.ColliderWidth / 2;
+        var rightPoint = Vector3.right * _player.ColliderWidth / 2 * 0.9f;
         if (Physics.Raycast(rayOrigin + rightPoint, Vector3.down, out hitInfo, _player.ColliderHeight / 2, _player.GroundLayerMask))
         {
             // ignore slopes
-            if (Vector3.Angle(Vector3.up, hitInfo.normal) == 90 && Vector3.Angle(Vector3.up, hit.normal) == 0)
+            if (Vector3.Angle(Vector3.up, hitInfo.normal) == 0 &&                               // Floor normal angle is greater than 0
+                hitInfo.point.y + _player.ColliderHeight / 2 > _player.transform.position.y &&  // hit point is higher than the player
+                Vector3.Angle(Vector3.up, hit.normal) == 0 && 
+                hit.point.y + _player.ColliderHeight / 2 <= _player.transform.position.y)
             {
                 Debug.DrawRay(rayOrigin + rightPoint, Vector3.down, Color.green);
                 hit = hit.point.y > hitInfo.point.y ? hit : hitInfo;

@@ -27,7 +27,8 @@ public class PlayerWallSlidingState : PlayerMovementState
             var halfColliderWidth = _player.ColliderWidth / 2;
             Debug.DrawLine(hitPoint, tempPos);
 
-            _walled = tempPos.x >= hitPoint.x - halfColliderWidth ? true : false;
+            // Adding a tiny buffer because fuck floating points
+            _walled = tempPos.x >= hitPoint.x - halfColliderWidth - 0.001f ? true : false;
         }
         else
         {
@@ -36,7 +37,8 @@ public class PlayerWallSlidingState : PlayerMovementState
             var halfColliderWidth = _player.ColliderWidth / 2;
             Debug.DrawLine(hitPoint, tempPos);
 
-            _walled = tempPos.x <= hitPoint.x + halfColliderWidth ? true : false;
+            // Adding a tiny buffer because fuck floating points
+            _walled = tempPos.x <= hitPoint.x + halfColliderWidth + 0.001f ? true : false;
         }
 
         if (!_walled)
