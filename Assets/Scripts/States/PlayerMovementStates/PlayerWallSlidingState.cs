@@ -19,7 +19,7 @@ public class PlayerWallSlidingState : PlayerMovementState
     public override void Update(float dt)
     {
         //base.Update(dt);
-        
+
         if (_rightSideWall)
         {
             var hitPoint = GetClosestRightPoint().point;
@@ -75,6 +75,7 @@ public class PlayerWallSlidingState : PlayerMovementState
             _player.SetMovementState(new PlayerFallingState(_commandSystem, _player));
         }
     }
+    
     protected override void OnRightEnd(Command command)
     {
         if (_rightSideWall)
@@ -90,6 +91,7 @@ public class PlayerWallSlidingState : PlayerMovementState
             _player.SetMovementState(new PlayerFallingState(_commandSystem, _player));
         }
     }
+
     protected override void OnLeftEnd(Command command)
     {
         if (!_rightSideWall)
